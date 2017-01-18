@@ -26,6 +26,7 @@ public enum Engine {
 
 		StockHall.initName();
 		LOG.warn("Stock name init completed.");
+
 		StockRobot.run();
     }
 

@@ -11,9 +11,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.profit.config.StockProperties;
 import org.profit.persist.domain.Stock;
 import org.profit.persist.domain.stock.Daily;
-import org.profit.config.StockProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

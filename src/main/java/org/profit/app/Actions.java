@@ -8,6 +8,9 @@ import org.profit.server.handler.action.Action;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 请求池
+ */
 public enum Actions {
 
     INSTANCE;

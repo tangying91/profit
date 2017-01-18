@@ -6,7 +6,7 @@ import org.profit.server.handler.communication.RequestMessage;
 import org.profit.server.handler.communication.exception.InvalidParamException;
 import org.profit.persist.domain.stock.Pool;
 import org.profit.server.handler.communication.data.ApiResponse;
-import org.profit.app.data.StockPoolVO;
+import org.profit.app.vo.StockNode;
 import org.profit.server.handler.action.AbstractAction;
 
 import java.util.ArrayList;
@@ -44,16 +44,16 @@ public class STOCK_POOL_LOAD extends AbstractAction {
             List<Pool> list1= poolMapper.selectPools(day, type, riseDay, volumeRate, gainsMin, gainsMax, min, mid, big, max, start, limit);
 
             // 股票名称处理
-            List<StockPoolVO> list = new ArrayList<StockPoolVO>();
+            List<StockNode> list = new ArrayList<StockNode>();
             for (Pool pool : list1) {
-                list.add(new StockPoolVO(pool));
+                list.add(new StockNode(pool));
             }
 
             int totalCount = list.size();
-            sendJsonResponse(ctx, new Gson().toJson(new ApiResponse<StockPoolVO>(true, totalCount, list)));
+            sendJsonResponse(ctx, new Gson().toJson(new ApiResponse<StockNode>(true, totalCount, list)));
 
         } else {
-            sendJsonResponse(ctx, new Gson().toJson(new ApiResponse<StockPoolVO>(true, 0, new ArrayList<StockPoolVO>())));
+            sendJsonResponse(ctx, new Gson().toJson(new ApiResponse<StockNode>(true, 0, new ArrayList<StockNode>())));
         }
     }
 }

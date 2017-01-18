@@ -12,11 +12,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.profit.app.realm.StockHall;
+import org.profit.config.StockProperties;
 import org.profit.persist.domain.Stock;
 import org.profit.persist.domain.stock.Found;
-import org.profit.config.StockProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleFoundDownload {
-
-    private static final Logger LOG = LoggerFactory.getLogger(SimpleFoundDownload.class);
 
     private Stock stock;
     private List<Found> foundList;

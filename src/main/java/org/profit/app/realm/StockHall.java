@@ -1,6 +1,6 @@
 package org.profit.app.realm;
 
-import org.profit.persist.PersistContext;
+import org.profit.config.PersistContext;
 import org.profit.persist.domain.Stock;
 import org.profit.persist.domain.stock.Daily;
 import org.profit.persist.domain.stock.Found;

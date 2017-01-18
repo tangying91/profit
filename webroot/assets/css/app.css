@@ -1,0 +1,297 @@
+/** 登录界面 **/
+.icon-login {
+    background: url(../../lib/img/icons/user.png) no-repeat !important;
+}
+
+/** 菜单栏 **/
+.icon-menu {
+    background: url(../../lib/img/icons/application_view_tile.png) no-repeat !important;
+}
+
+/** 游戏管理 **/
+.icon-game {
+    background: url(../../lib/img/icons/color_swatch.png) no-repeat !important;
+}
+
+/** 游戏运营 **/
+.icon-operate {
+    background: url(../../lib/img/icons/chart_curve.png) no-repeat !important;
+}
+
+/** 数据分析 **/
+.icon-data {
+    background: url(../../lib/img/icons/chart_bar.png) no-repeat !important;
+}
+
+/** 日志查询 **/
+.icon-log {
+    background: url(../../lib/img/icons/date.png) no-repeat !important;
+}
+
+/** 游戏运维 **/
+.icon-support {
+    background: url(../../lib/img/icons/computer.png) no-repeat !important;
+}
+
+/** 系统设置 **/
+.icon-setting {
+    background: url(../../lib/img/icons/cog.png) no-repeat !important;
+}
+
+/** 主界面 **/
+.icon-home {
+    background: url(../../lib/img/icons/house.png) no-repeat !important;
+}
+
+/** 玩家管理 **/
+.icon-game-player {
+    background: url(../../lib/img/icons/group.png) no-repeat !important;
+}
+
+/** 运营活动 **/
+.icon-game-activity {
+    background: url(../../lib/img/icons/controller.png) no-repeat !important;
+}
+
+/** 游戏公告 **/
+.icon-game-announce {
+    background: url(../../lib/img/icons/telephone.png) no-repeat !important;
+}
+
+/** 福利大厅 **/
+.icon-game-welfare {
+    background: url(../../lib/img/icons/palette.png) no-repeat !important;
+}
+
+/** 礼包管理 **/
+.icon-game-pack {
+    background: url(../../lib/img/icons/cup.png) no-repeat !important;
+}
+
+/** 系数配置 **/
+.icon-game-server-var {
+    background: url(../../lib/img/icons/drive.png) no-repeat !important;
+}
+
+/** 系统预警 **/
+.icon-game-alert {
+    background: url(../../lib/img/icons/bell.png) no-repeat !important;
+}
+
+/** 运营收入 **/
+.icon-operate-charge {
+    background: url(../../lib/img/icons/coins.png) no-repeat !important;
+}
+
+/** 用户粘性 **/
+.icon-operate-user {
+    background: url(../../lib/img/icons/status_away.png) no-repeat !important;
+}
+
+/** 等级分布 **/
+.icon-operate-level {
+    background: url(../../lib/img/icons/star.png) no-repeat !important;
+}
+
+/** 战役节点 **/
+.icon-operate-cp {
+    background: url(../../lib/img/icons/lorry.png) no-repeat !important;
+}
+
+/** 任务详解 **/
+.icon-operate-quest {
+    background: url(../../lib/img/icons/shape_group.png) no-repeat !important;
+}
+
+/** 在线人数 **/
+.icon-operate-online {
+    background: url(../../lib/img/icons/chart_line.png) no-repeat !important;
+}
+
+/** 活动参与 **/
+.icon-operate-attend {
+    background: url(../../lib/img/icons/mouse.png) no-repeat !important;
+}
+
+/** 消费行为 **/
+.icon-operate-res {
+    background: url(../../lib/img/icons/eye.png) no-repeat !important;
+}
+
+/** 玩家排行 **/
+.icon-operate-rank {
+    background: url(../../lib/img/icons/medal_bronze_1.png) no-repeat !important;
+}
+
+/** 玩家加载 **/
+.icon-operate-create {
+    background: url(../../lib/img/icons/user_green.png) no-repeat !important;
+}
+
+/** 跨服排行 **/
+.icon-operate-cross {
+    background: url(../../lib/img/icons/medal_gold_1.png) no-repeat !important;
+}
+
+/** 玩家反馈 **/
+.icon-bug {
+    background: url(../../lib/img/icons/bug.png) no-repeat !important;
+}
+
+/** 道具日志 **/
+.icon-log-item {
+    background: url(../../lib/img/icons/money.png) no-repeat !important;
+}
+
+/** 充值日志 **/
+.icon-log-charge {
+    background: url(../../lib/img/icons/money_dollar.png) no-repeat !important;
+}
+
+/** 登录日志 **/
+.icon-log-login {
+    background: url(../../lib/img/icons/user_red.png) no-repeat !important;
+}
+
+/** 经验日志 **/
+.icon-log-experience {
+    background: url(../../lib/img/icons/ruby.png) no-repeat !important;
+}
+
+/** 操作记录 **/
+.icon-log-action {
+    background: url(../../lib/img/icons/camera.png) no-repeat !important;
+}
+
+/** 用户管理 **/
+.icon-user {
+    background: url(../../lib/img/icons/user_suit.png) no-repeat !important;
+}
+
+/** 服务器管理 **/
+.icon-server-entity {
+    background: url(../../lib/img/icons/server.png) no-repeat !important;
+}
+
+/** 服务器管理 **/
+.icon-server {
+    background: url(../../lib/img/icons/server_link.png) no-repeat !important;
+}
+
+/** 网关管理 **/
+.icon-server-gateway {
+    background: url(../../lib/img/icons/server_key.png) no-repeat !important;
+}
+
+/** 开关 **/
+.icon-switch {
+    background: url(../../lib/img/icons/key.png) no-repeat !important;
+}
+
+/** 数据字典 **/
+.icon-dictionary {
+    background: url(../../lib/img/icons/database.png) no-repeat !important;
+}
+
+/** 手操分析 **/
+.icon-cast {
+    background: url(../../lib/img/icons/thumb_up.png) no-repeat !important;
+}
+
+.icon-form {
+    background: url(../../lib/img/icons/application_form.png) no-repeat !important;
+}
+.icon-form-add {
+    background: url(../../lib/img/icons/application_form_add.png) no-repeat !important;
+}
+.icon-form-delete {
+    background: url(../../lib/img/icons/application_form_delete.png) no-repeat !important;
+}
+.icon-form-edit {
+    background: url(../../lib/img/icons/application_form_edit.png) no-repeat !important;
+}
+
+/** 按钮样式 ************************************************************* **/
+
+/** 提交按钮 **/
+.icon-tick {
+    background: url(../../lib/img/icons/tick.png) no-repeat !important;
+}
+/** 重置按钮 **/
+.icon-undo {
+    background: url(../../lib/img/icons/arrow_undo.png) no-repeat !important;
+}
+/** 刷新按钮 **/
+.icon-refresh {
+    background: url(../../lib/img/icons/arrow_refresh.png) no-repeat !important;
+}
+/** 锁按钮 **/
+.icon-lock {
+    background: url(../../lib/img/icons/lock.png) no-repeat !important;
+}
+/** 发送按钮 **/
+.icon-send {
+    background: url(../../lib/img/icons/newspaper_go.png) no-repeat !important;
+}
+/** Excel按钮 **/
+.icon-excel {
+    background: url(../../lib/img/icons/page_excel.png) no-repeat !important;
+}
+/** 数据修正 **/
+.icon-modify {
+    background: url(../../lib/img/icons/lightbulb.png) no-repeat !important;
+}
+/** 同步 **/
+.icon-synch {
+    background: url(../../lib/img/icons/monitor_link.png) no-repeat !important;
+}
+/** 今日运营 **/
+.icon-operate-today {
+    background: url(../../lib/img/icons/lightning.png) no-repeat !important;
+}
+
+/** ************************************************************* **/
+
+/** APP common icon **/
+.icon-app {
+	background: url(../../lib/img/icons/application.png) no-repeat !important;
+}
+.icon-app-home {
+	background: url(../../lib/img/icons/application_home.png) no-repeat !important;
+}
+
+.icon-cancel {
+	background: url(../../lib/img/icons/cancel.png) no-repeat !important;
+}
+.icon-save {
+	background: url(../../lib/img/icons/disk.png) no-repeat !important;
+}
+.icon-accept {
+	background: url(../../lib/img/icons/accept.png) no-repeat !important;
+}
+.icon-delete {
+	background: url(../../lib/img/icons/delete.png) no-repeat !important;
+}
+.icon-add {
+	background: url(../../lib/img/icons/add.png) no-repeat !important;
+}
+.icon-edit {
+	background: url(../../lib/img/icons/page_white_edit.png) no-repeat !important;
+}
+.icon-search {
+    background: url(../../lib/img/icons/zoom.png) no-repeat !important;
+}
+.icon-cross {
+	background: url(../../lib/img/icons/cross.png) no-repeat !important;
+}
+.icon-stat {
+    background: url(../../lib/img/icons/calculator.png) no-repeat !important;
+}
+
+tr.x-grid-record-green .x-grid-td { background: GREEN; }
+tr.x-grid-record-yellow .x-grid-td { background: YELLOW; }
+tr.x-grid-record-cyan .x-grid-td { background: CYAN; }
+tr.x-grid-record-gray .x-grid-td { background: GRAY; }
+tr.x-grid-record-red .x-grid-td { background: RED; }
+
+

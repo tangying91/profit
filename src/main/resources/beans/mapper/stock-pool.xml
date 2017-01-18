@@ -1,0 +1,58 @@
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.profit.persist.mapper.stock.PoolMapper">
+
+	<!-- 什么样的股票是好股票 -->
+	<!-- 1.成交量明显放大,近期有突然放大 -->
+	<!-- 2.整体一段时间的趋势向上,连续上涨天数较多 -->
+	<!-- 3.资金有流入迹象,至少大户以上资金呈现净流入 -->
+    <select id="selectPools" resultType="org.profit.persist.domain.stock.Pool">
+        SELECT * FROM stock_pool
+		WHERE day=#{day}
+		AND type=#{type}
+		AND riseDay>=#{riseDay}
+		AND volumeRate>=#{volumeRate}
+		AND minInflow>=#{min}
+		AND midInflow>=#{mid}
+		AND bigInflow>#{big}
+		AND maxInflow>=#{max}
+		AND gains BETWEEN #{gainsMin} and #{gainsMax}
+		<!--AND code IN (select code from stock_pool where type=15 and riseDay >=8)-->
+		ORDER BY volumeRate DESC limit #{start},#{limit}
+    </select>
+
+	<select id="selectDayPools" resultType="org.profit.persist.domain.stock.Pool">
+		SELECT * FROM stock_pool
+		WHERE code=#{code}
+		AND day=#{day}
+	</select>
+
+    <insert id="insert">
+		insert into stock_pool (
+            day, code, type, volumeTotal, volumeRate, riseDay, amplitude, gains,
+            minInflow, midInflow, bigInflow, maxInflow,inflowAvg
+		) values (
+			#{day}, #{code}, #{type}, #{volumeTotal}, #{volumeRate},
+			#{riseDay}, #{amplitude}, #{gains},
+		    #{minInflow}, #{midInflow}, #{bigInflow}, #{maxInflow}, #{inflowAvg}
+		)
+	</insert>
+
+	<insert id="insertList" parameterType="java.util.List">
+		insert into stock_pool (
+            day, code, type, volumeTotal, volumeRate, riseDay, amplitude, gains,
+            minInflow, midInflow, bigInflow, maxInflow,inflowAvg
+		) values
+		<foreach collection="list" item="item" index="index" open="(" separator="),(" close=")">
+            #{item.day}, #{item.code}, #{item.type}, #{item.volumeTotal}, #{item.volumeRate},
+			#{item.riseDay}, #{item.amplitude}, #{gains},
+            #{minInflow}, #{midInflow}, #{bigInflow},  #{maxInflow}, #{inflowAvg}
+		</foreach>
+	</insert>
+
+    <delete id="delete">
+        delete from stock_pool where code=#{code}
+    </delete>
+
+</mapper>

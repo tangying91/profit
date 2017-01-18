@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="serverManager" class="org.profit.server.impl.ServerManagerImpl"/>
+
+	<bean id="httpServer" class="org.profit.server.impl.NettyHttpServer" destroy-method="stopServer">
+		<constructor-arg ref="tcpConfig"/>
+		<constructor-arg ref="httpServerChannelInitializer"/>
+	</bean>
+
+	<bean id="tcpConfig" class="org.profit.server.NettyConfig">
+		<property name="channelOptions" ref="httpChannelOptions"/>
+		<property name="bossGroup" ref="bossGroup"/>
+		<property name="workerGroup" ref="workerGroup"/>
+		<property name="portNumber" value="${http.port}"/>
+	</bean>
+
+	<util:map id="httpChannelOptions" map-class="java.util.HashMap">
+		<entry>
+			<key>
+				<util:constant static-field="io.netty.channel.ChannelOption.SO_KEEPALIVE"/>
+			</key>
+			<value type="java.lang.Boolean">${so.keepalive}</value>
+		</entry>
+		<entry>
+			<key>
+				<util:constant static-field="io.netty.channel.ChannelOption.SO_BACKLOG"/>
+			</key>
+			<value type="java.lang.Integer">${so.backlog}</value>
+		</entry>
+	</util:map>
+
+	<bean id="bossGroup" class="io.netty.channel.nio.NioEventLoopGroup" destroy-method="shutdownGracefully">
+		<constructor-arg type="int" index="0" value="${group.bossThreadCount}"/>
+	</bean>
+
+	<bean id="workerGroup" class="io.netty.channel.nio.NioEventLoopGroup" destroy-method="shutdownGracefully">
+		<constructor-arg type="int" index="0" value="${group.workerThreadCount}"/>
+	</bean>
+
+	<bean id="httpServerChannelInitializer" class="org.profit.server.initializer.HttpServerInitializer">
+		<property name="httpServerHandler" ref="httpServerHandler"/>
+	</bean>
+
+	<bean id="httpServerHandler" class="org.profit.server.handler.HttpServerHandler">
+	</bean>
+</beans>

@@ -1,15 +1,16 @@
 package org.profit.app;
 
-import org.profit.app.action.STOCK_POOL_GENERATE;
 import org.profit.app.action.STOCK_POOL_LOAD;
-import org.profit.server.handler.communication.exception.InvalidActionException;
 import org.profit.server.handler.action.Action;
+import org.profit.server.handler.communication.exception.InvalidActionException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 请求池
+ * HTTP请求池
+ *
+ * @author TangYing
  */
 public enum Actions {
 
@@ -21,7 +22,6 @@ public enum Actions {
         ACTION_MAP = new HashMap<String, Action>();
 
         ACTION_MAP.put("STOCK_POOL_LOAD", new STOCK_POOL_LOAD());
-        ACTION_MAP.put("STOCK_POOL_GENERATE", new STOCK_POOL_GENERATE());
     }
 
     public Action interpretCommand(String actionName) throws InvalidActionException {

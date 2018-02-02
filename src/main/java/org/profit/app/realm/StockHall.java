@@ -18,58 +18,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 游戏大厅
+ * 股票数据大厅
+ *
+ * @author TangYing
  */
 public class StockHall {
 
     private static final Logger LOG = LoggerFactory.getLogger(StockHall.class);
 
-    // Database mapper
-    private static final StockMapper stockMapper = (StockMapper) AppContext.getBean(PersistContext.STOCK_MAPPER);
-    private static final PoolMapper poolMapper = (PoolMapper) AppContext.getBean(PersistContext.STOCK_POOL_MAPPER);
-    private static final FoundMapper foundMapper = (FoundMapper) AppContext.getBean(PersistContext.STOCK_FOUND_MAPPER);
-    private static final DailyMapper dailyMapper = (DailyMapper) AppContext.getBean(PersistContext.STOCK_DALIY_MAPPER);
-
-    public static void insert(Stock stock) {
-        stockMapper.insert(stock);
-    }
-
-    public static void update(Stock stock) {
-        try {
-            stockMapper.update(stock);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static List<Stock> getAllStocks() {
-        return stockMapper.selectAll();
-    }
-
-    public static Stock getStock(String code) {
-        return stockMapper.select(code);
-    }
-
-    public static List<Pool> getDayPools(String code, String day) {
-        return poolMapper.selectDayPools(code, day);
-    }
-
-    public static Daily getLastDailyObj(String code, String day) {
-        return dailyMapper.selectLastObj(code, day);
-    }
-
-    public static Found getLastFoundObj(String code, String day) {
-        return foundMapper.selectLastObj(code, day);
-    }
-
+    private static final StockMapper STOCK_MAPPER = (StockMapper) AppContext.getBean(PersistContext.STOCK_MAPPER);
+    private static final PoolMapper STOCK_POOL_MAPPER = (PoolMapper) AppContext.getBean(PersistContext.STOCK_POOL_MAPPER);
+    private static final FoundMapper STOCK_FOUND_MAPPER = (FoundMapper) AppContext.getBean(PersistContext.STOCK_FOUND_MAPPER);
+    private static final DailyMapper STOCK_DAILY_MAPPER = (DailyMapper) AppContext.getBean(PersistContext.STOCK_DALIY_MAPPER);
 
     private static Map<String, String> nameMap = new HashMap<String, String>();
 
-    public static void initName() {
-        nameMap.clear();
-
-        List<Stock> stockList = getAllStocks();
-        for(Stock stock : stockList) {
+    public static void loadName() {
+        List<Stock> stocks = getAllStocks();
+        for (Stock stock : stocks) {
             nameMap.put(stock.getCode(), stock.getName());
         }
     }
@@ -78,24 +44,108 @@ public class StockHall {
         return nameMap.containsKey(code) ? nameMap.get(code) : "";
     }
 
-    public static void deletePool(String code) {
-        poolMapper.delete(code);
+    /**
+     * 插入股票
+     *
+     * @param stock
+     */
+    public static void insert(Stock stock) {
+        STOCK_MAPPER.insert(stock);
     }
 
+    /**
+     * 更新股票
+     *
+     * @param stock
+     */
+    public static void update(Stock stock) {
+        try {
+            STOCK_MAPPER.update(stock);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取所有股票数据
+     *
+     * @return
+     */
+    public static List<Stock> getAllStocks() {
+        return STOCK_MAPPER.selectAll();
+    }
+
+    /**
+     * 获取指定股票数据
+     *
+     * @param code
+     * @return
+     */
+    public static Stock getStock(String code) {
+        return STOCK_MAPPER.select(code);
+    }
+
+    /**
+     * 获取指定股票和日期的股票池
+     *
+     * @param code
+     * @param day
+     * @return
+     */
+    public static List<Pool> getDayPools(String code, String day) {
+        return STOCK_POOL_MAPPER.selectDayPools(code, day);
+    }
+
+    /**
+     * 获取指定股票日常基础数据
+     *
+     * @param code
+     * @param day
+     * @return
+     */
+    public static Daily getLastDailyObj(String code, String day) {
+        return STOCK_DAILY_MAPPER.selectLastObj(code, day);
+    }
+
+    /**
+     * 获取指定股票资金数据
+     *
+     * @param code
+     * @param day
+     * @return
+     */
+    public static Found getLastFoundObj(String code, String day) {
+        return STOCK_FOUND_MAPPER.selectLastObj(code, day);
+    }
+
+    /**
+     * 删除指定股票的股票池
+     *
+     * @param code
+     */
+    public static void deletePool(String code) {
+        STOCK_POOL_MAPPER.delete(code);
+    }
+
+    /**
+     * 插入数据到股票池
+     *
+     * @param pool
+     */
     public static void insertPool(Pool pool) {
         try {
-            poolMapper.insert(pool);
+            STOCK_POOL_MAPPER.insert(pool);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static List<Found> selectFounds(String code, String endDay) {
-        return foundMapper.selectList(code, "2015-01-01", endDay);
+        return STOCK_FOUND_MAPPER.selectList(code, "2015-01-01", endDay);
     }
 
     public static List<Daily> selectDailies(String code, String endDay) {
-        return dailyMapper.selectByCode(code, "2015-01-01", endDay);
+        return STOCK_DAILY_MAPPER.selectByCode(code, "2015-01-01", endDay);
     }
 
     /**
@@ -108,12 +158,12 @@ public class StockHall {
         list.removeAll(localList);
 
         if (list.isEmpty()) {
-            LOG.info("Download {} found successful. But no needs add records. {} ", code, list.size());
+            LOG.debug("Download {} found successful. But no needs add records. {} ", code, list.size());
             return;
         }
 
-        foundMapper.insertList(list);
-        LOG.info("Download {} found successful. Add {} new records", code, list.size());
+        STOCK_FOUND_MAPPER.insertList(list);
+        LOG.debug("Download {} found successful. Add {} new records", code, list.size());
     }
 
     /**
@@ -126,11 +176,11 @@ public class StockHall {
         list.removeAll(localList);
 
         if (list.isEmpty()) {
-            LOG.info("Download {} daily successful. But no needs add records. {} ", code, list.size());
+            LOG.debug("Download {} daily successful. But no needs add records. {} ", code, list.size());
             return;
         }
 
-        dailyMapper.insertList(list);
-        LOG.info("Download {} daily successful. Add {} new records", code, list.size());
+        STOCK_DAILY_MAPPER.insertList(list);
+        LOG.debug("Download {} daily successful. Add {} new records", code, list.size());
     }
 }

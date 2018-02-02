@@ -6,27 +6,24 @@ import org.profit.persist.domain.Stock;
 public class StockLogic {
 
     public static void generateStockCode() {
-//        String[] headers = new String[] {"600", "601", "000"};
-        String[] headers = new String[] {"300", "002"};
-        for (int i = 0; i < 999; i++) {
-            for (String header : headers) {
-                String code = header + i;
-                if (i < 10) {
-                    code = header + "00" + i;
-                } else if (i < 100) {
-                    code = header + "0" + i;
-                }
-
-                Stock stock = StockHall.getStock(code);
-                if (stock == null) {
-                    // 新建对象
-                    Stock item = new Stock();
-                    item.setName("");
-                    item.setCode(code);
-                    item.setLastAnalyticTime(0L);
-                    StockHall.insert(item);
-                }
-            }
-        }
+//        String ss = ;
+//
+//        String[] headers = ss.split(",");
+//        for (String header : headers) {
+//            int bIdx = header.lastIndexOf("(");
+//            String code = header.substring(bIdx + 1, bIdx + 7);
+//            String name = header.substring(0, bIdx);
+//
+//            Stock stock = StockHall.getStock(code);
+//            if (stock == null) {
+//                Stock item = new Stock();
+//                item.setName(name);
+//                item.setCode(code);
+//                item.setAnalyticed(false);
+//                item.setDownloadedFund(false);
+//                item.setDownloadedBase(false);
+//                StockHall.insert(item);
+//            }
+//        }
     }
 }

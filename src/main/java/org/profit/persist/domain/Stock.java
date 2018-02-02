@@ -2,9 +2,11 @@ package org.profit.persist.domain;
 
 public class Stock {
 
-    private String code;                // 股票代码
-    private String name;                // 股票名称
-    private Long lastAnalyticTime;      // 上一次分析时间
+    private String code;                    // 股票代码
+    private String name;                    // 股票名称
+    private Boolean downloadedBase;         // 基础数据是否下载
+    private Boolean downloadedFund;         // 资金数据是否下载
+    private Boolean analyticed;             // 是否已经分析
 
     public String getCode() {
         return code;
@@ -22,11 +24,27 @@ public class Stock {
         this.name = name;
     }
 
-    public Long getLastAnalyticTime() {
-        return lastAnalyticTime;
+    public Boolean getDownloadedBase() {
+        return downloadedBase;
     }
 
-    public void setLastAnalyticTime(Long lastAnalyticTime) {
-        this.lastAnalyticTime = lastAnalyticTime;
+    public void setDownloadedBase(Boolean downloadedBase) {
+        this.downloadedBase = downloadedBase;
+    }
+
+    public Boolean getDownloadedFund() {
+        return downloadedFund;
+    }
+
+    public void setDownloadedFund(Boolean downloadedFund) {
+        this.downloadedFund = downloadedFund;
+    }
+
+    public Boolean getAnalyticed() {
+        return analyticed;
+    }
+
+    public void setAnalyticed(Boolean analyticed) {
+        this.analyticed = analyticed;
     }
 }

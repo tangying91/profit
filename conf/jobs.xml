@@ -15,7 +15,7 @@
 				<group>ANALYTIC_GROUP</group>
 				<job-name>analytic-job</job-name>
 				<job-group>ANALYTIC_GROUP</job-group>
-				<cron-expression>0 0 17,22 ? * MON,TUE,WED,THU,FRI</cron-expression>
+				<cron-expression>0 0 20 ? * MON,TUE,WED,THU,FRI</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>

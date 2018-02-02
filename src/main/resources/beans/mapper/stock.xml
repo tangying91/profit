@@ -13,14 +13,14 @@
 
     <insert id="insert">
 		insert into stock (
-			code, name, lastAnalyticTime
+			code, name, downloadedBase, downloadedFund, analyticed
 		) values (
-			#{code}, #{name}, #{lastAnalyticTime}
+			#{code}, #{name}, #{downloadedBase}, #{downloadedFund}, #{analyticed}
 		)
 	</insert>
 
     <update id="update">
-		update stock set lastAnalyticTime=#{lastAnalyticTime}, name=#{name} where code=#{code}
+		update stock set downloadedBase=#{downloadedBase}, downloadedFund=#{downloadedFund}, analyticed=#{analyticed}, name=#{name} where code=#{code}
 	</update>
 
 </mapper>

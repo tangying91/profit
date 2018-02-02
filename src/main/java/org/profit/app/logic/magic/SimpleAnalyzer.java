@@ -8,10 +8,19 @@ import org.profit.persist.domain.stock.Found;
 import org.profit.persist.domain.stock.Pool;
 import org.profit.util.DateUtils;
 import org.profit.util.ListUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * 股票数据分析器
+ *
+ * @author TangYing
+ */
 public class SimpleAnalyzer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SimpleAnalyzer.class);
 
     private List<Daily> dailyList;
     private List<Found> foundList;
@@ -49,7 +58,13 @@ public class SimpleAnalyzer {
         analytic(Consts.ANALYTIC_30_DAY, day);
     }
 
-    public void analytic(int type, String day) {
+    /**
+     * 分析股票
+     *
+     * @param type
+     * @param day
+     */
+    private void analytic(int type, String day) {
         Pool pool = new Pool();
         pool.setType(type);
         pool.setDay(day);
@@ -74,8 +89,11 @@ public class SimpleAnalyzer {
 
     /**
      * 分析上涨趋势
+     *
+     * @param pool
+     * @param day
      */
-    public void analyticUpwardTrend(Pool pool, int day) {
+    private void analyticUpwardTrend(Pool pool, int day) {
         // 获取天数
         day = dailyList.size() > day ? day :dailyList.size();
 
@@ -114,12 +132,17 @@ public class SimpleAnalyzer {
         pool.setRiseDay(riseDay);
         pool.setAmplitude(amplitude);
         pool.setGains(gains);
+
+        LOG.debug("Download {} analytic successful.", pool.getCode());
     }
 
     /**
      * 分析成交量
+     *
+     * @param pool
+     * @param day
      */
-    public void analyticVolume(Pool pool, int day) {
+    private void analyticVolume(Pool pool, int day) {
         // 获取天数
         day = dailyList.size() > day ? day :dailyList.size();
 
@@ -148,8 +171,11 @@ public class SimpleAnalyzer {
 
     /**
      * 分析资金趋势
+     *
+     * @param pool
+     * @param day
      */
-    public void analyticFoundTrend(Pool pool, int day) {
+    private void analyticFoundTrend(Pool pool, int day) {
         // 获取天数
         day = foundList.size() > day ? day :foundList.size();
 

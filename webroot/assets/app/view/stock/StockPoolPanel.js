@@ -46,6 +46,7 @@ Ext.define('APP.view.stock.StockPoolPanel', {
                     store: 'ComboAnalyticType',
                     valueField: 'value',
                     displayField: 'display',
+                    labelWidth: 60,
                     editable: false,
                     allowBlank: false,
                     value: 0
@@ -109,7 +110,7 @@ Ext.define('APP.view.stock.StockPoolPanel', {
 
                 '->',
 
-                '*每天下午5点开始下载并分析当天数据'
+                '*每天下午8点开始下载并分析当天数据'
             ],
 
             dockedItems: [

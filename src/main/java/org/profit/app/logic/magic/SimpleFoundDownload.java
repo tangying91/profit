@@ -21,6 +21,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 股票资金下载器
+ *
+ * @author TangYing
+ */
 public class SimpleFoundDownload {
 
     private Stock stock;
@@ -95,12 +100,12 @@ public class SimpleFoundDownload {
                                     // 2014-04-09 2079.7244万元 -26.7519万元 805.2753万元 1184.7064万元 116.4949万元 10285万元 0.752%
                                     if (tds.size() >= 8) {
                                         String sdate = tds.get(0).text();
-                                        String stotal = tds.get(1).text().replace(StockProperties.defalutFoundUnit, "");
-                                        String smin = tds.get(2).text().replace(StockProperties.defalutFoundUnit, "");
-                                        String smid = tds.get(3).text().replace(StockProperties.defalutFoundUnit, "");
-                                        String sbig = tds.get(4).text().replace(StockProperties.defalutFoundUnit, "");
-                                        String smax = tds.get(5).text().replace(StockProperties.defalutFoundUnit, "");
-                                        String sturnover = tds.get(6).text().replace(StockProperties.defalutFoundUnit, "");
+                                        String stotal = tds.get(1).text().replace(StockProperties.defaultFoundUnit, "");
+                                        String smin = tds.get(2).text().replace(StockProperties.defaultFoundUnit, "");
+                                        String smid = tds.get(3).text().replace(StockProperties.defaultFoundUnit, "");
+                                        String sbig = tds.get(4).text().replace(StockProperties.defaultFoundUnit, "");
+                                        String smax = tds.get(5).text().replace(StockProperties.defaultFoundUnit, "");
+                                        String sturnover = tds.get(6).text().replace(StockProperties.defaultFoundUnit, "");
 
                                         long date = 0L;
                                         double total = 0.0, min = 0.0, mid = 0.0, big = 0.0, max = 0.0;

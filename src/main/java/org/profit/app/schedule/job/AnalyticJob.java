@@ -14,6 +14,7 @@ public class AnalyticJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        StockRobot.run();
+        // 启动股票分析器
+        StockRobot.start();
     }
 }

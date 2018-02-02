@@ -1,5 +1,10 @@
 package org.profit.app;
 
+/**
+ * 系统内常量
+ *
+ * @author TangYing
+ */
 public class Consts {
 
     public static final int ANALYTIC_5_DAY = 5;

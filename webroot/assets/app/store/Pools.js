@@ -9,7 +9,7 @@ Ext.define('APP.store.Pools', {
         url: ACTION.STOCK_POOL_LOAD,
         method: 'GET',
         extraParams: {
-            type: 5,
+            type: GLOBAL.DEFAULT_TYPE,
             riseDay: GLOBAL.DEFAULT_RISE_DAY,
             volumeRate: GLOBAL.DEFAULT_VOLUME_RATE,
             gainsRange: GLOBAL.DEFAULT_GAINS_RANGE,

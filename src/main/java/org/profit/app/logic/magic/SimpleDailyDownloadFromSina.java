@@ -59,7 +59,7 @@ public class SimpleDailyDownloadFromSina {
             // 下载逻辑
             download(url);
         } catch (Exception e1) {
-//            LOG.error("Exception in download stock daily. try end...{} {}", code, e1.getMessage());
+            LOG.error("Exception in download stock daily. try end...{} {}", code, e1.getMessage());
         }
 
         return result;
@@ -103,7 +103,11 @@ public class SimpleDailyDownloadFromSina {
                                     Elements tds = tr.select("td");
 
                                     // 日期 开盘价 最高价 收盘价 最低价 交易量(股) 交易金额(元)
-                                    if (tds.size() >= 7 && !tr.className().equals("tr_2")) {
+                                    if (tds.size() >= 7) {
+                                        if (tds.get(0).text().equals("日期")) {
+                                            continue;
+                                        }
+
                                         try {
                                             Daily sd = new Daily();
 

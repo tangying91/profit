@@ -1,7 +1,6 @@
 package org.profit;
 
 import org.profit.app.realm.StockHall;
-import org.profit.app.realm.StockRobot;
 import org.profit.app.schedule.StockExecutor;
 import org.profit.config.AppContext;
 import org.profit.server.services.ScheduleService;
@@ -20,14 +19,10 @@ public enum Engine {
 	private ScheduleService scheduleService = (ScheduleService) AppContext.getBean(AppContext.SCHEDULE_SERVICE);
 
 	public void start() {
+		// 初始化多任务
 		scheduleService.init();
-		StockExecutor.INSTANCE.start();
-		LOG.warn("StockExecutor is started.");
-
-		StockHall.initName();
-		LOG.warn("Stock name init completed.");
-
-		StockRobot.run();
+		StockHall.loadName();
+		LOG.info("Stock Engine started successfully.");
     }
 
 	public void stop() {

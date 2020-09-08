@@ -1,15 +1,5 @@
 package org.profit.app.analyse
 
-import org.profit.app.Consts
-import org.profit.app.realm.StockHall
-import org.profit.persist.domain.Stock
-import org.profit.persist.domain.StockDaily
-import org.profit.persist.domain.StockFound
-import org.profit.persist.domain.StockStat
-import org.profit.util.DateUtils
-import org.profit.util.ListUtils
-import org.slf4j.LoggerFactory
-
 /**
  * 股票数据分析器
  *

@@ -10,35 +10,9 @@
 
 	<context:property-placeholder location="file:conf/profit.properties"/>
 
-    <!-- 数据源 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
-        <property name="url" value="${db.jdbcUrl}"/>
-        <property name="username" value="${db.username}"/>
-        <property name="password" value="${db.password}"/>
-        <property name="initialSize" value="1"/>
-        <property name="minIdle" value="1"/>
-        <property name="maxActive" value="50"/>
-        <property name="maxWait" value="60000"/>
-        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-        <property name="validationQuery" value="SELECT 'x'"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
-        <property name="filters" value="stat"/>
-    </bean>
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:beans/mapper/**/*.xml" />
-	</bean>
-
 	<bean id="appContext" class="org.profit.config.AppContext"/>
 
 	<import resource="server-handlers.xml"/>
 
 	<import resource="server-services.xml"/>
-
-	<!-- Persistence mappers -->
-	<import resource="mybatis-beans.xml"></import>
 </beans>

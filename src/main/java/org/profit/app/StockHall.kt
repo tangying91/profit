@@ -1,10 +1,10 @@
 package org.profit.app
 
 import org.profit.app.analyse.StockUpAnalyzer
+import org.profit.app.analyse.StockVolumeAnalyzer
 import org.profit.app.service.DownloadHistoryService
 import org.profit.util.DateUtils
 import org.profit.util.FileUtils
-import org.slf4j.LoggerFactory
 import java.util.*
 
 /**
@@ -18,8 +18,6 @@ import java.util.*
 */
 object StockHall {
 
-    private val LOG = LoggerFactory.getLogger(StockHall::class.java)
-
     /**
      * 按顺序开始处理当天的数据
      */
@@ -30,12 +28,18 @@ object StockHall {
         allStockCodes.filter { !logs.contains(it) }.forEach { code ->
             println("$code 开始下载数据...")
             DownloadHistoryService(code, date).execute()
-//            Thread.sleep((Math.random() * 5000 + 5000).toLong())
         }
+    }
 
-        // 分析数据
+    fun analyse() {
+        // 分析股价数据
         allStockCodes.forEach {
             StockUpAnalyzer(it).analyse()
+        }
+
+        // 分析成交量数据
+        allStockCodes.forEach {
+            StockVolumeAnalyzer(it).analyse()
         }
     }
 

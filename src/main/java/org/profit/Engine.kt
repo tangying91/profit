@@ -31,7 +31,7 @@ enum class Engine {
     }
 
     fun test() {
-        StockHall.start()
+        StockHall.analyse()
     }
 
     companion object {

@@ -1,6 +1,6 @@
 package org.profit
 
-import org.profit.app.realm.StockRobot
+import org.profit.app.StockHall
 import org.profit.app.schedule.StockExecutor
 import org.profit.config.AppContext
 import org.profit.server.services.ScheduleService
@@ -31,7 +31,7 @@ enum class Engine {
     }
 
     fun test() {
-        StockRobot.start()
+        StockHall.start()
     }
 
     companion object {

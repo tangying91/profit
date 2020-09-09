@@ -39,9 +39,9 @@ class StockHistorySeeker(code: String) : StockSeeker(code, StockProperties.histo
             }
 
             // 寫入文件
-            // 日期 开盘 最高 最低 收盘 成交量 成交金额 升跌$ 升跌% 缩 高低差% SZ深证 SZ%
             if (sb.isNotEmpty()) {
                 FileUtils.writeHistory(code, sb.toString())
+                FileUtils.writeLog(code)
             }
         }
     }

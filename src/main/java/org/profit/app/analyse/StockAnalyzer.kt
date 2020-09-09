@@ -2,10 +2,10 @@ package org.profit.app.analyse
 
 /**
  * 股票数据分析器
- *
- * @author TangYing
  */
-class StockAnalyzer(private val code: String, private val date: String) {
+abstract class StockAnalyzer(val code: String) {
+
+    abstract fun analyse()
 
 //    private var stockDailyList: List<StockDaily?>? = null
 //    private var stockFoundList: List<StockFound?>? = null

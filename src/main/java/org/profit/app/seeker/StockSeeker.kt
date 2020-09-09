@@ -32,7 +32,7 @@ open class StockSeeker(val code: String, private val seekerUrl: String) {
             // 下载逻辑
             download(url)
         } catch (e1: Exception) {
-            LOG.error("Exception in {0}, {1}", url, e1.message)
+            LOG.error("Exception in {}, {}", url, e1.message)
         }
     }
 
@@ -50,8 +50,8 @@ open class StockSeeker(val code: String, private val seekerUrl: String) {
             // Request configuration can be overridden at the request level.
             // They will take precedence over the one set at the client level.
             val requestConfig = RequestConfig.custom()
-                    .setSocketTimeout(3000)
-                    .setConnectTimeout(3000)
+                    .setSocketTimeout(30000)
+                    .setConnectTimeout(30000)
                     .build()
             httpGet.config = requestConfig
             val response = httpClient.execute(httpGet)

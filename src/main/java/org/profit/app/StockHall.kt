@@ -1,7 +1,9 @@
 package org.profit.app
 
-import org.profit.app.service.DownloadDailyService
+import org.profit.app.analyse.StockUpAnalyzer
+import org.profit.app.service.DownloadHistoryService
 import org.profit.util.DateUtils
+import org.profit.util.FileUtils
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -22,36 +24,18 @@ object StockHall {
      * 按顺序开始处理当天的数据
      */
     fun start() {
+        // 读取当天的日志记录，看是否已经下载过数据
+        val logs = FileUtils.readLogs()
         val date = DateUtils.formatDate(System.currentTimeMillis())
-        allStockCodes.forEach { code ->
-            DownloadDailyService(code, date).execute()
-//            DownloadFoundService(code, date).execute()
+        allStockCodes.filter { !logs.contains(it) }.forEach { code ->
+            println("$code 开始下载数据...")
+            DownloadHistoryService(code, date).execute()
+//            Thread.sleep((Math.random() * 5000 + 5000).toLong())
         }
 
-//        startDownloadDaily(day)
-//        startDownloadFound(day)
-//        startAnalytic(day)
-    }
-
-    /**
-     * 开始分析数据
-     */
-    fun startAnalytic(day: String) {
-        allStockCodes.forEach { code ->
-            // 获取该股票的所有数据，进行数据分析
-
-//            val pools = StockHall.getDayPools(stock.code, day)
-//            if (pools!!.isEmpty()) {
-//                val simpleAnalyzer = SimpleAnalyzer(stock, day)
-//                simpleAnalyzer.analytic()
-//                stock.analyticed = true
-//                StockHall.update(stock)
-//                try {
-//                    Thread.sleep(IntegerUtils.generateRandomSeed(500, 5000).toLong())
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
+        // 分析数据
+        allStockCodes.forEach {
+            StockUpAnalyzer(it).analyse()
         }
     }
 
@@ -63,12 +47,21 @@ object StockHall {
     private val stockMap: MutableMap<String, String> = HashMap()
 
     init {
-        stockMap["002594"] = "比亚迪"
-        stockMap["002456"] = "欧菲光"
+        FileUtils.readStocks().forEach {
+            val array = it.split(" ")
+            stockMap[array[0]] = array[1]
+        }
     }
 
     /**
      * 所有股票代码
      */
     val allStockCodes get() = stockMap.keys
+
+    /**
+     * 获取名称
+     */
+    fun stockName(code: String): String {
+        return stockMap[code] ?: ""
+    }
 }

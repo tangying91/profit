@@ -1,4 +1,4 @@
-package org.profit.persist.domain
+package org.profit.app.pojo
 
 class StockStat {
     var day: String = "" // 日期

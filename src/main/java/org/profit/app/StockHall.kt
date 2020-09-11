@@ -19,9 +19,9 @@ import java.util.*
 object StockHall {
 
     /**
-     * 按顺序开始处理当天的数据
+     * 下载数据
      */
-    fun start() {
+    fun download() {
         // 读取当天的日志记录，看是否已经下载过数据
         val logs = FileUtils.readLogs()
         val date = DateUtils.formatDate(System.currentTimeMillis())
@@ -34,13 +34,10 @@ object StockHall {
     fun analyse() {
         // 分析股价数据
         allStockCodes.forEach {
-            StockUpAnalyzer(it).analyse()
+            StockUpAnalyzer(it, 5).analyse()
         }
 
-        // 分析成交量数据
-        allStockCodes.forEach {
-            StockVolumeAnalyzer(it).analyse()
-        }
+        println("数据分析完成.")
     }
 
     /**

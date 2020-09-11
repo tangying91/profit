@@ -31,6 +31,7 @@ enum class Engine {
     }
 
     fun test() {
+        StockHall.download()
         StockHall.analyse()
     }
 

@@ -9,12 +9,7 @@ import java.lang.Exception
 /**
  * 【积】周期内,连续上涨天数较多
  */
-class StockUpAnalyzer(code: String): StockAnalyzer(code) {
-
-    /**
-     * 统计样本数
-     */
-    private val statCount = 10
+class StockUpAnalyzer(code: String, private val statCount: Int) : StockAnalyzer(code) {
 
     /**
      * 1.周期内总天数
@@ -22,44 +17,29 @@ class StockUpAnalyzer(code: String): StockAnalyzer(code) {
      * 3.周内总上涨天数
      */
     override fun analyse() {
+        // 创业板暂时不筛选
+        if (code.startsWith("3")) {
+            return
+        }
+
+        // ST股票不筛选
+        if (StockHall.stockName(code).contains("ST")) {
+            return
+        }
+
         // 获取数据，后期可以限制天数
         val list = readHistories(statCount)
 
         // 如果没有数据
         if (list.isEmpty()) {
-//            println("$code 数据为空")
             return
         }
 
         val totalDay = list.size
-        val serialRiseDays = serialDaysOfRise(list)
-        val riseDays = list.count { it.stockPercent > 0.0 }
-        val result = if (riseDays.div(totalDay.toDouble()) >= 0.8) {
-            "强势上涨中"
-        } else {
-            if (serialRiseDays > 5) {
-                "出现连续上涨"
-            } else {
-                ""
-            }
+        val riseDays = list.count { it.close > it.open }
+        if (riseDays >= totalDay) {
+            println("$code${StockHall.stockName(code)} 一共$totalDay 天，累计一共上涨$riseDays 天")
+            StockVolumeAnalyzer(code, statCount).analyse()
         }
-
-        if (result != "") {
-            println("$code${StockHall.stockName(code)} 一共$totalDay 天，最大连续上涨$serialRiseDays 天，累计一共上涨$riseDays 天  $result")
-        }
-    }
-
-    private fun serialDaysOfRise(list: List<StockHistory>): Int {
-        var maxCount = 0
-        var count = 0
-        for (i in 0 until list.size) {
-            if (list[i].stockPercent > 0.0) {
-                count++
-            } else {
-                count = 0
-            }
-            maxCount = kotlin.math.max(maxCount, count)
-        }
-        return maxCount
     }
 }

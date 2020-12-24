@@ -45,31 +45,6 @@ abstract class StockAnalyzer(val code: String) {
         return histories.sortedByDescending { it.dateTime }.subList(0, end)
     }
 
-//    private var stockDailyList: List<StockDaily?>? = null
-//    private var stockFoundList: List<StockFound?>? = null
-//    private var stockDailyLatest: StockDaily? = null
-//
-//    fun analytic() { // 检查这一天是否是节假日
-//        if (DateUtils.isWeek(date)) {
-//            return
-//        }
-//        // 检查数据是否完整
-//        val foundLast = StockHall.getLastFoundObj(stock.getCode(), date)
-//        stockDailyLatest = StockHall.getLastDailyObj(stock.getCode(), date)
-//        if (foundLast == null || stockDailyLatest == null) {
-//            return
-//        }
-//        stockDailyList = StockHall.selectDailies(stock.getCode(), date)
-//        stockFoundList = StockHall.selectFounds(stock.getCode(), date)
-//
-//        // Analytic
-//        // 寻找短期爆发点
-//        analytic(Consts.ANALYTIC_5_DAY, date)
-//        analytic(Consts.ANALYTIC_10_DAY, date)
-//        // 寻找底部区域
-//        analytic(Consts.ANALYTIC_30_DAY, date)
-//    }
-//
 //    /**
 //     * 分析股票
 //     *

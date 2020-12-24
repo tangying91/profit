@@ -1,7 +1,10 @@
 package org.profit.app
 
+import org.profit.app.analyse.StockDownAnalyzer
+import org.profit.app.analyse.StockHistoryAnalyzer
 import org.profit.app.analyse.StockUpAnalyzer
 import org.profit.app.analyse.StockVolumeAnalyzer
+import org.profit.app.schedule.StockExecutor
 import org.profit.app.service.DownloadHistoryService
 import org.profit.util.DateUtils
 import org.profit.util.FileUtils
@@ -25,16 +28,18 @@ object StockHall {
         // 读取当天的日志记录，看是否已经下载过数据
         val logs = FileUtils.readLogs()
         val date = DateUtils.formatDate(System.currentTimeMillis())
-        allStockCodes.filter { !logs.contains(it) }.forEach { code ->
-            println("$code 开始下载数据...")
-            DownloadHistoryService(code, date).execute()
+        allStockCodes.filter { !logs.contains(it) && !it.startsWith("3") }.forEach { code ->
+//            DownloadHistoryService(code, date).execute()
+            StockExecutor.download(code, date)
         }
     }
 
     fun analyse() {
         // 分析股价数据
-        allStockCodes.forEach {
-            StockUpAnalyzer(it, 5).analyse()
+        allStockCodes.filter { !it.startsWith("3") }.forEach {
+//            StockDownAnalyzer(it, 10, 0.8).analyse()
+//            StockHistoryAnalyzer(it, 180, 0.05).analyse()
+            StockVolumeAnalyzer(it, 5, 4).analyse()
         }
 
         println("数据分析完成.")

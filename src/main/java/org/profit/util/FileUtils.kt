@@ -69,6 +69,22 @@ object FileUtils {
         }
     }
 
+    fun writeStat(content: String) {
+        println(content)
+
+        val statPath = "${stocks}/stats"
+        checkPath(Paths.get(statPath))
+
+        // 组装目标路径
+        val path = Paths.get(statPath, DateUtils.formatDate(System.currentTimeMillis()))
+        try {
+            // 写入
+            Files.write(path, "$content\r\n".toByteArray(charset("UTF-8")), StandardOpenOption.APPEND, StandardOpenOption.CREATE)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
     /**
      * 检查路径
      */

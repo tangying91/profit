@@ -1,25 +1,25 @@
 package org.profit.app.schedule
 
+import org.profit.app.service.DownloadHistoryService
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 /**
  * 线程池
- *
- * @author TangYing
  */
 object StockExecutor {
 
-    private val LOG = LoggerFactory.getLogger(StockExecutor::class.java)
-    private var service: ExecutorService? = null
-
-    fun start() {
-        service = Executors.newFixedThreadPool(4)
-        LOG.info("StockExecutor is started.")
-    }
+    private val service: ExecutorService = Executors.newFixedThreadPool(8)
 
     fun shutdown() {
-        service?.shutdown()
+        service.shutdown()
+    }
+
+    fun download(code: String, date: String) {
+        service.submit{
+            println("$code 开始下载 $code 的数据...")
+            DownloadHistoryService(code, date).execute()
+        }
     }
 }

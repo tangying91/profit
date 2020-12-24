@@ -1,10 +1,13 @@
 package org.profit.app.analyse
 
+import org.profit.app.StockHall
+import org.profit.util.StockUtils
+
 /**
  * 【突】周期末,股价成交量大幅拉升
  * 周期内成交量是否有异动
  */
-class StockVolumeAnalyzer(code: String, private val statCount: Int) : StockAnalyzer(code) {
+class StockVolumeAnalyzer(code: String, private val statCount: Int, private val statRate: Int) : StockAnalyzer(code) {
 
     /**
      * 1.周期内平均成交量（去除最低和最高）
@@ -15,14 +18,23 @@ class StockVolumeAnalyzer(code: String, private val statCount: Int) : StockAnaly
         // 获取数据，后期可以限制天数
         val list = readHistories(statCount)
 
-        // 如果没有数据
-        if (list.size <= 2) {
+        // 最近三天成交量出现平均成交量N倍的情况
+        if (list.size <= 3 || list.size != statCount) {
             return
         }
 
         val totalDay = list.size
         val avgVolume = (list.map { it.volume }.sum()).div(totalDay)
-        val riseDays = list.count { it.volume > avgVolume }
-        println("大于平均成交量$riseDays 天")
+        val risePercent = (list[0].close - list[statCount - 1].open).div(list[statCount - 1].open) * 100
+
+        var satisfy = false
+        for (i in 0 until 3) {
+            satisfy = list[i].volume.div(avgVolume) >= statRate || satisfy
+        }
+
+        if (satisfy) {
+            val content = "$code${StockHall.stockName(code)} 一共$totalDay 天，最近成交量出现异动，区间涨幅${StockUtils.twoDigits(risePercent)}% ,快速查看: http://stockpage.10jqka.com.cn/$code/"
+            println(content)
+        }
     }
 }

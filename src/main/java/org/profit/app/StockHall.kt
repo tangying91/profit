@@ -1,11 +1,7 @@
 package org.profit.app
 
-import org.profit.app.analyse.StockDownAnalyzer
-import org.profit.app.analyse.StockHistoryAnalyzer
-import org.profit.app.analyse.StockUpAnalyzer
 import org.profit.app.analyse.StockVolumeAnalyzer
 import org.profit.app.schedule.StockExecutor
-import org.profit.app.service.DownloadHistoryService
 import org.profit.util.DateUtils
 import org.profit.util.FileUtils
 import java.util.*

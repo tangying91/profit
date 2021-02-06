@@ -13,13 +13,10 @@ import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
-import javax.activation.MimetypesFileTypeMap
 
 class HttpStaticFileHandler {
     companion object {
         private val LOG = LoggerFactory.getLogger(HttpStaticFileHandler::class.java)
-
-        val MIMETYPES_FILE_TYPE_MAP: MimetypesFileTypeMap = MimetypesFileTypeMap()
 
         const val HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz"
         const val HTTP_DATE_GMT_TIMEZONE = "GMT"
@@ -117,15 +114,15 @@ class HttpStaticFileHandler {
          * @param file     file to extract content type
          */
         private fun setContentTypeHeader(response: HttpResponse, file: File) {
-            response.headers()[HttpHeaders.Names.CONTENT_TYPE] = MIMETYPES_FILE_TYPE_MAP!!.getContentType(file.path)
+//            response.headers()[HttpHeaders.Names.CONTENT_TYPE] = MIMETYPES_FILE_TYPE_MAP!!.getContentType(file.path)
         }
 
         init {
-            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/xml xml")
-            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("text/html html")
-            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("text/css css")
-            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/javascript js")
-            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/json json")
+//            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/xml xml")
+//            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("text/html html")
+//            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("text/css css")
+//            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/javascript js")
+//            MIMETYPES_FILE_TYPE_MAP.addMimeTypes("application/json json")
         }
     }
 

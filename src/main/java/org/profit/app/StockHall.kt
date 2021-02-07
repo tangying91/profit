@@ -33,9 +33,9 @@ object StockHall {
     fun analyse() {
         // 分析股价数据
         allStockCodes.filter { !it.startsWith("3") }.forEach {
-//            StockDownAnalyzer(it, 10, 0.8).analyse()
+//            StockDownAnalyzer(it, 20, 0.8).analyse()
 //            StockHistoryAnalyzer(it, 180, 0.05).analyse()
-            StockVolumeAnalyzer(it, 5, 4).analyse()
+            StockVolumeAnalyzer(it, 5, 2).analyse()
         }
 
         println("数据分析完成.")

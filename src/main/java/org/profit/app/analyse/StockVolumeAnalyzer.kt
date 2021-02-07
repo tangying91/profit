@@ -24,15 +24,15 @@ class StockVolumeAnalyzer(code: String, private val statCount: Int, private val 
         }
 
         val totalDay = list.size
-        val avgVolume = (list.map { it.volume }.sum()).div(totalDay)
+        val avgVolume = (list.map { it.volume }.sum() - (list.maxBy { it.volume }?.volume ?: 0)).div(totalDay - 1)
         val risePercent = (list[0].close - list[statCount - 1].open).div(list[statCount - 1].open) * 100
 
         var satisfy = false
-        for (i in 0 until 3) {
+        for (i in 0 until 1) {
             satisfy = list[i].volume.div(avgVolume) >= statRate || satisfy
         }
 
-        if (satisfy) {
+        if (satisfy && risePercent > -0.03) {
             val content = "$code${StockHall.stockName(code)} 一共$totalDay 天，最近成交量出现异动，区间涨幅${StockUtils.twoDigits(risePercent)}% ,快速查看: http://stockpage.10jqka.com.cn/$code/"
             println(content)
         }

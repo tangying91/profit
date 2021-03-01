@@ -13,13 +13,14 @@ class StockHistorySeeker(code: String) : StockSeeker(code, StockProperties.histo
      *  解析数据
      */
     override fun handle(doc: Document) {
-        // 解析数据表格
+        val sb = StringBuffer()
+
+        // 正常数据解析数据表格
         val div = doc.getElementById("ctl16_contentdiv")
         val table = div.getElementsByTag("table")
 
         // 检查条件是否匹配
         if (table != null) {
-            val sb = StringBuffer()
             // 以tr每行作为一个单独对象判断
             for (tr in table.select("tr")) {
                 val tds = tr.select("td")

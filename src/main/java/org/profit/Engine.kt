@@ -1,5 +1,6 @@
 package org.profit
 
+import org.profit.app.StockHall
 import org.profit.app.analyse.StockMockTrading
 import org.profit.app.schedule.StockExecutor
 import org.profit.config.AppContext
@@ -31,10 +32,10 @@ enum class Engine {
     }
 
     fun test() {
-//        StockHall.download()
-//        StockHall.analyse()
+        StockHall.download()
+        StockHall.analyse()
 
-        StockMockTrading("002185").analyse()
+//        StockMockTrading("002185").analyse()
 //        StockMockTrading("000932").analyse()
     }
 

@@ -14,7 +14,7 @@ import java.util.*
  * 2、【金】周期内,资金持续流入天数较多
  * 3、【突】周期末,股价成交量大幅拉升
  * 4、【底】较长周期内涨幅较低,持续底部整理
-*/
+ */
 object StockHall {
 
     /**
@@ -24,7 +24,11 @@ object StockHall {
         // 读取当天的日志记录，看是否已经下载过数据
         val logs = FileUtils.readLogs()
         val date = DateUtils.formatDate(System.currentTimeMillis())
-        allStockCodes.filter { !logs.contains(it) && !it.startsWith("3") }.forEach { code ->
+        allStockCodes.filter {
+            !logs.contains(it)
+                    && !it.startsWith("3")
+                    && !it.startsWith("688")
+        }.forEach { code ->
 //            DownloadHistoryService(code, date).execute()
             StockExecutor.download(code, date)
         }
@@ -32,10 +36,13 @@ object StockHall {
 
     fun analyse() {
         // 分析股价数据
-        allStockCodes.filter { !it.startsWith("3") }.forEach {
+        allStockCodes.filter {
+            !it.startsWith("3")
+                    && !it.startsWith("688")
+        }.forEach {
 //            StockDownAnalyzer(it, 20, 0.8).analyse()
 //            StockHistoryAnalyzer(it, 180, 0.05).analyse()
-            StockVolumeAnalyzer(it, 5, 2).analyse()
+            StockVolumeAnalyzer(it, 30, 2.0).analyse()
         }
 
         println("数据分析完成.")

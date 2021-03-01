@@ -11,7 +11,7 @@ import kotlin.math.abs
  */
 class StockHistoryAnalyzer(code: String, private val statCount: Int, private val stockPercent: Double) : StockAnalyzer(code) {
 
-    override fun analyse() {
+    override fun analyse(results: MutableList<String>) {
         // 获取数据，后期可以限制天数
         val list = readHistories(statCount)
         if (list.size != statCount) {

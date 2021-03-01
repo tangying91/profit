@@ -35,6 +35,8 @@ object StockHall {
     }
 
     fun analyse() {
+        val results = mutableListOf<String>()
+
         // 分析股价数据
         allStockCodes.filter {
             !it.startsWith("3")
@@ -42,10 +44,21 @@ object StockHall {
         }.forEach {
 //            StockDownAnalyzer(it, 20, 0.8).analyse()
 //            StockHistoryAnalyzer(it, 180, 0.05).analyse()
-            StockVolumeAnalyzer(it, 30, 2.0).analyse()
+            StockVolumeAnalyzer(it, 10, 2.0).analyse(results)
         }
-
         println("数据分析完成.")
+
+        // 邮件
+        if (results.isNotEmpty()) {
+            val content = StringBuffer()
+
+            results.forEach {
+                println(it)
+                content.append(it).append("\n")
+            }
+
+            EMailSender.send("457151376@qq.com", DateUtils.formatDate(System.currentTimeMillis()), content.toString())
+        }
     }
 
     /**

@@ -14,7 +14,7 @@ enum class Engine {
 
     INSTANCE;
 
-    private val scheduleService = AppContext.Companion.getBean(AppContext.Companion.SCHEDULE_SERVICE) as ScheduleService
+    private val scheduleService = AppContext.getBean(AppContext.SCHEDULE_SERVICE) as ScheduleService
 
     fun start() {
         scheduleService.init()
@@ -32,11 +32,8 @@ enum class Engine {
     }
 
     fun test() {
-        StockHall.download()
         StockHall.analyse()
-
-//        StockMockTrading("002185").analyse()
-//        StockMockTrading("000932").analyse()
+        StockHall.download()
     }
 
     companion object {

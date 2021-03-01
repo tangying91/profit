@@ -17,7 +17,7 @@ class StockUpAnalyzer(code: String, private val statCount: Int, private val upPe
      * 2.周期内连续上涨最大天数
      * 3.周内总上涨天数
      */
-    override fun analyse() {
+    override fun analyse(results: MutableList<String>) {
         // 获取数据，后期可以限制天数
         val list = readHistories(statCount)
 

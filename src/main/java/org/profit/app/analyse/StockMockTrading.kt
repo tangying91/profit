@@ -18,7 +18,7 @@ class StockMockTrading(code: String, private val statCount: Int = 100) : StockAn
     private var lastBuyPrice = 0.0
     private var serialSellCount = 0         // 连续卖出次数
 
-    override fun analyse() {
+    override fun analyse(results: MutableList<String>) {
         // 获取数据，后期可以限制天数
         val list = readHistories(statCount).sortedBy { it.dateTime }
         if (list.size != statCount) {

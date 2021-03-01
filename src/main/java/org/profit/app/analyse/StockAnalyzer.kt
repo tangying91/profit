@@ -10,7 +10,7 @@ import java.lang.Exception
  */
 abstract class StockAnalyzer(val code: String) {
 
-    abstract fun analyse()
+    abstract fun analyse(results: MutableList<String>)
 
     /**
      * 获取历史数据

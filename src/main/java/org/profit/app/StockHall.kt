@@ -44,7 +44,7 @@ object StockHall {
         }.forEach {
 //            StockDownAnalyzer(it, 20, 0.8).analyse()
 //            StockHistoryAnalyzer(it, 180, 0.05).analyse()
-            StockVolumeAnalyzer(it, 10, 2.0).analyse(results)
+            StockVolumeAnalyzer(it, 10, 2.2).analyse(results)
         }
         println("数据分析完成.")
 

@@ -47,7 +47,7 @@ object EMailSender {
         //设置发件人和收件人
         try {
             // 设置发件人
-            val internetAddress = InternetAddress("oookay_sao2@126.com")
+            val internetAddress = InternetAddress("xlzxbyd@126.com")
             internetAddress.personal = "Stock Profit Result"
             msg.setFrom(internetAddress)
 
@@ -61,7 +61,7 @@ object EMailSender {
 
             // 设置传输协议
             val transport = session.getTransport("smtp")
-            transport.connect("smtp.126.com", "oookay_sao2@126.com", "fzfoiMbWPT15KADZ")
+            transport.connect("smtp.126.com", "xlzxbyd@126.com", "TYOKUAGAOPWIGNPM")
             transport.sendMessage(msg, msg.allRecipients)
             transport.close()
         } catch (e: Exception) {

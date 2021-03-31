@@ -1,7 +1,6 @@
 package org.profit
 
 import org.profit.app.StockHall
-import org.profit.app.analyse.StockMockTrading
 import org.profit.app.schedule.StockExecutor
 import org.profit.config.AppContext
 import org.profit.server.services.ScheduleService

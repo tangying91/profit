@@ -73,5 +73,7 @@
     <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6" level="project" />
     <orderEntry type="library" name="Maven: commons-dbutils:commons-dbutils:1.6" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4.7" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
   </component>
 </module>

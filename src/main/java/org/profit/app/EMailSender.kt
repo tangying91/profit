@@ -48,7 +48,7 @@ object EMailSender {
         try {
             // 设置发件人
             val internetAddress = InternetAddress("xlzxbyd@126.com")
-            internetAddress.personal = "Stock Profit Result"
+            internetAddress.personal = "数据分析结果"
             msg.setFrom(internetAddress)
 
             // 设置收件人
@@ -61,7 +61,7 @@ object EMailSender {
 
             // 设置传输协议
             val transport = session.getTransport("smtp")
-            transport.connect("smtp.126.com", "xlzxbyd@126.com", "TYOKUAGAOPWIGNPM")
+            transport.connect("smtp.126.com", "xlzxbyd@126.com", "IOGJSYLTLVIMFUDM")
             transport.sendMessage(msg, msg.allRecipients)
             transport.close()
         } catch (e: Exception) {
@@ -72,7 +72,7 @@ object EMailSender {
     class MyAuthenticator: Authenticator() {
 
         override fun getPasswordAuthentication(): PasswordAuthentication {
-            return PasswordAuthentication("oookay_sao2", "WASWYARBXAVGJZUN")
+            return PasswordAuthentication("xlzxbyd", "IOGJSYLTLVIMFUDM")
         }
     }
 }

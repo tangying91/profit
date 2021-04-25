@@ -44,7 +44,7 @@ object StockHall {
         }.forEach {
 //            StockDownAnalyzer(it, 20, 0.8).analyse()
 //            StockHistoryAnalyzer(it, 180, 0.05).analyse()
-            StockVolumeAnalyzer(it, 10, 2.2).analyse(results)
+            StockVolumeAnalyzer(it, 10, 2.0).analyse(results)
         }
         println("数据分析完成.")
 
@@ -52,9 +52,15 @@ object StockHall {
         if (results.isNotEmpty()) {
             val content = StringBuffer()
 
-            results.forEach {
-                println(it)
-                content.append(it).append("\n")
+            results.forEach { code ->
+                val c = "$code ${stockName(code)}, 最近成交量出现异动, 快速查看: http://stockpage.10jqka.com.cn/$code/"
+                content.append(c).append("\n")
+            }
+
+            content.append("批量汇总").append("\n")
+            results.forEach { code ->
+                val c = "http://stockpage.10jqka.com.cn/$code/"
+                content.append(c).append("\n")
             }
 
             EMailSender.send("457151376@qq.com", DateUtils.formatDate(System.currentTimeMillis()), content.toString())

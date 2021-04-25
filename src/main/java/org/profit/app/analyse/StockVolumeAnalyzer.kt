@@ -29,9 +29,10 @@ class StockVolumeAnalyzer(code: String, private val statCount: Int, private val 
         val lastVolume = list[0].volume / 10000
 
         val rate = lastVolume.div(avgVolume.toDouble())
-        if (rate >= statRate && percent >= 0.05) {
+        if (rate >= statRate && percent >= 0.03) {
             val content = "$code${StockHall.stockName(code)} 一共$totalDay 天，最近成交量出现异动，最新涨幅${StockUtils.twoDigits(percent * 100)}% ,快速查看: http://stockpage.10jqka.com.cn/$code/"
-            results.add(content)
+            println(content)
+            results.add(code)
         }
     }
 }

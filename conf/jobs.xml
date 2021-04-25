@@ -15,7 +15,7 @@
 				<group>ANALYTIC_GROUP</group>
 				<job-name>analytic-job</job-name>
 				<job-group>ANALYTIC_GROUP</job-group>
-				<cron-expression>0 0 6 ? * MON,TUE,WED,THU,FRI,SAT</cron-expression>
+				<cron-expression>0 0 6 ? * TUE,WED,THU,FRI,SAT</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>
@@ -32,7 +32,7 @@
 				<group>DOWNLOAD_GROUP</group>
 				<job-name>download-job</job-name>
 				<job-group>DOWNLOAD_GROUP</job-group>
-				<cron-expression>0 0 1 ? * MON,TUE,WED,THU,FRI,SAT</cron-expression>
+				<cron-expression>0 0 1 ? * TUE,WED,THU,FRI,SAT</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>
